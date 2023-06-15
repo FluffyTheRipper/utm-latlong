@@ -1,5 +1,5 @@
 import functions
-import utm
+from utm import from_latlon, to_latlon
 
 if __name__ == '__main__':
     pass
@@ -13,7 +13,7 @@ def latlon_to_utm(df):
 
     for i in range(len(df)):
         try:
-            east, nor, zone_num, zone_let = utm.from_latlon(float(df.loc[i, lat_col_num]), 
+            east, nor, zone_num, zone_let = from_latlon(float(df.loc[i, lat_col_num]), 
                                                         float(df.loc[i, lon_col_num]))
         except:
             nor, east, zone_num, zone_let = ("","","","")
@@ -35,7 +35,7 @@ def utm_to_latlon(df):
 
     for i in range(len(df)):
         try:
-            lat, long = utm.to_latlon(float(df.loc[i, east_col_num]), 
+            lat, long = to_latlon(float(df.loc[i, east_col_num]), 
                             float(df.loc[i, nor_col_num]),
                             zone_number=17,
                             zone_letter='T'
